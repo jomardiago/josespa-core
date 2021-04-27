@@ -1,9 +1,7 @@
-import { registerApplication, start } from 'single-spa';
+import { registerApplication, start, mountRootParcel } from 'single-spa';
 
-registerApplication({
-  name: '@josespa/navbar',
-  app: () => System.import('@josespa/navbar'),
-  activeWhen: ['/']
+mountRootParcel(() => System.import('@josespa/navbar'), {
+  domElement: document.getElementById('navbar')
 });
 
 registerApplication({
