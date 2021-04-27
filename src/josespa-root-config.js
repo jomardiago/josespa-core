@@ -1,10 +1,10 @@
-import { registerApplication, start } from "single-spa";
+import { registerApplication, start, mountRootParcel } from "single-spa";
 
-registerApplication({
-  name: "@josespa/navbar",
-  app: () => System.import("@josespa/navbar"),
-  activeWhen: ["/"]
-});
+// registerApplication({
+//   name: "@josespa/navbar",
+//   app: () => System.import("@josespa/navbar"),
+//   activeWhen: ["/"]
+// });
 
 registerApplication({
   name: "@josespa/employees",
@@ -20,4 +20,13 @@ registerApplication({
 
 start({
   urlRerouteOnly: true,
+});
+
+const navbar = mountRootParcel(System.import('@josespa/navbar'), {
+  author: 'Jose Mari A. Diago',
+  domElement: document.getElementById('navbar')
+});
+
+navbar.mountPromise.then(() => {
+  // what do you want to do here after mounting?
 });
